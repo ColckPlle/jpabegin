@@ -1,7 +1,6 @@
 package org.example;
-
+import org.hibernate.annotations.Entity;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;

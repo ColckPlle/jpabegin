@@ -1,7 +1,6 @@
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
     <persistence-unit name="jpabegin" transaction-type="RESOURCE_LOCAL">
-        <class>src.main.java.org.example.jpaUser</class>
-        <class>jpabasic.reserve.domain.User</class>
+        <class>org.example.jpaUser</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
