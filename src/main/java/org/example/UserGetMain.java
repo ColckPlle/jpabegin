@@ -1,9 +1,12 @@
 package org.example;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import java.time.LocalDateTime;
 
-public class UserSaveMain {
+public class UserGetMain {
     public static void main(String [] arg){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpabegin");
         EntityManager entityManager = emf.createEntityManager();
@@ -11,8 +14,12 @@ public class UserSaveMain {
 
         try{
             transaction.begin();
-            User user = new User("user@user.com", "user", LocalDateTime.now());
-            entityManager.persist(user);
+            User user = entityManager.find(User.class, "user@user.com");
+            if( user == null){
+                System.out.println("유저 없음");
+            } else {
+                System.out.println("유저 있음");
+            }
             transaction.commit();
         } catch (Exception ex){
             ex.printStackTrace();
@@ -22,4 +29,5 @@ public class UserSaveMain {
         }
         emf.close();
     }
+
 }

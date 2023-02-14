@@ -1,5 +1,5 @@
 package org.example;
-import org.hibernate.annotations.Entity;
+import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "User")
-public class jpaUser {
+public class User {
     @Id
     private String email;
     private String name;
@@ -15,13 +15,17 @@ public class jpaUser {
     @Column(name = "create_date")
     private LocalDateTime createDate;
 
-    protected jpaUser(){
+    protected User(){
 
     }
 
-    public jpaUser(String email, String name, LocalDateTime createDate){
+    public User(String email, String name, LocalDateTime createDate){
         this.email = email;
         this.name = name;
         this.createDate = createDate;
+    }
+
+    public void changeName(String newName) {
+        this.name = newName;
     }
 }
