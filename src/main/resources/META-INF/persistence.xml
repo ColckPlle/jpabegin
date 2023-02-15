@@ -1,6 +1,6 @@
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
     <persistence-unit name="jpabegin" transaction-type="RESOURCE_LOCAL">
-        <class>src.main.org.example.User</class>
+        <class>src.jpa05.org.example.User</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost/jpabegin?characterEncoding=utf8"/>
