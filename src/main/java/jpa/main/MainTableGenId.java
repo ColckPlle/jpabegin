@@ -1,15 +1,16 @@
-package jpa05.main;
-
-import jpa05.domain.Review;
-import jpa05.jpa.EMF;
+package jpa.main;
+import jpa.domain.AccessLog;
+import jpa.jpa.EMF;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.time.LocalDateTime;
 
-public class MainNative {
-    private static Logger logger = LoggerFactory.getLogger(MainNative.class);
+
+public class MainTableGenId {
+    private static Logger logger = LoggerFactory.getLogger(MainTableGenId.class);
 
     public static void main(String[] args) {
         EMF.init();
@@ -17,15 +18,16 @@ public class MainNative {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            Review review = new Review(5, "H-01", "작성자", "댓글");
+            AccessLog log = new AccessLog("/path01", LocalDateTime.now());
             logger.info("persist 실행 전");
-            em.persist(review);
+            em.persist(log);
             logger.info("persist 실행 함");
-            logger.info("생성한 식별자: {}", review.getId());
+            logger.info("생성한 식별자: {}", log.getId());
             logger.info("커밋하기 전");
             tx.commit();
             logger.info("커밋함");
-        } catch (Exception ex) {
+            tx.commit();
+        } catch (Exception e) {
             tx.rollback();
         } finally {
             em.close();
@@ -33,4 +35,3 @@ public class MainNative {
         EMF.close();
     }
 }
-

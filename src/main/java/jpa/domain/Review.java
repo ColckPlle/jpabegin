@@ -1,4 +1,4 @@
-package jpa05.domain;
+package jpa.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

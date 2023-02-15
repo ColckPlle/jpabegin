@@ -1,24 +1,23 @@
-package jpa05.main;
-import jpa05.domain.AccessLog;
-import jpa05.jpa.EMF;
-import org.slf4j.Logger;
+package jpa.main;
+
+import jpa.domain.ActivityLog;
+import jpa.jpa.EMFOracle;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import java.time.LocalDateTime;
+import org.slf4j.Logger;
 
-
-public class MainTableGenId {
-    private static Logger logger = LoggerFactory.getLogger(MainTableGenId.class);
+public class MainSequence {
+    private static Logger logger = LoggerFactory.getLogger(MainSequence.class);
 
     public static void main(String[] args) {
-        EMF.init();
-        EntityManager em = EMF.createEntityManager();
+        EMFOracle.init();
+        EntityManager em = EMFOracle.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();
-            AccessLog log = new AccessLog("/path01", LocalDateTime.now());
+            ActivityLog log = new ActivityLog("U01", "VISIT");
             logger.info("persist 실행 전");
             em.persist(log);
             logger.info("persist 실행 함");
@@ -26,12 +25,11 @@ public class MainTableGenId {
             logger.info("커밋하기 전");
             tx.commit();
             logger.info("커밋함");
-            tx.commit();
         } catch (Exception e) {
             tx.rollback();
         } finally {
             em.close();
         }
-        EMF.close();
+        EMFOracle.close();
     }
 }
